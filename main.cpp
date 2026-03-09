@@ -16,6 +16,8 @@ int main() {
     int choice;
     double tempR;
     string tempC;
+    char inputC;
+
 
     cout << "Which linked list method should we use?" << endl;
     cout << "\t[1] New nodes are added at the head of the linked list" << endl;
@@ -27,6 +29,14 @@ int main() {
     cout << "Enter review comments: ";
     getline(cin, tempC);
     cin.ignore();
+    cout << "Enter another review? Y/N: ";
+    cin >> inputC;
+    while (inputC != 'n' && inputC != 'N' && inputC != 'Y' && inputC != 'y') {
+        cout << "\tError! Please enter Y/N: ";
+        cin >> inputC;
+    }
+    
+
 
     return 0;
 }
