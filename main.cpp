@@ -41,49 +41,53 @@ int main() {
         cin.ignore();
 
         //Add node according to chosen method
-        if (choice == 1){
-            newNode = new ReviewNode;
-            if(!head) {
-                head = newNode;
-                newNode->next = nullptr;
-                newNode->rating = tempR;
-                newNode->comment = tempC;
+        if (choice == 1){                   //add new node to head of list
+            newNode = new ReviewNode;       //dynamically allocate new node
+            if(!head) {                     //if list is empty
+                head = newNode;             //head points to new node  
+                newNode->next = nullptr;    //new node points to nullptr
+                newNode->rating = tempR;    //assign values to new node
+                newNode->comment = tempC;   
             }
-            else {
+            else {                          //if list is not empty
+                //assign head pointer location to new node
                 newNode->next = head;
-                newNode->rating = tempR;
+                newNode->rating = tempR;    //assign values to newnode
                 newNode->comment = tempC;
-                head = newNode;
+                head = newNode;             //head points to new node
             }
         }
-        if (choice == 2) {
-            newNode = new ReviewNode;
-            current = head;
-            if(!head) {
-                head = newNode;
-                newNode->next = nullptr;
-                newNode->rating = tempR;
+        if (choice == 2) {                  //add new node to end of list
+            newNode = new ReviewNode;       //dynamically allocate new node
+            current = head;         //assign head pointer location to current
+            if(!head) {                     //if list is empty
+                head = newNode;             //head points to new node
+                newNode->next = nullptr;    //new node points to nullptr
+                newNode->rating = tempR;    //assign values to new node
                 newNode->comment = tempC;
             }
-            else {
-                while(current) {
-                    prev = current;
-                    current = current->next;
+            else {                          //if list is not empty
+                while(current) {            //traverse list
+                    prev = current;         //prev points to current node
+                    current = current->next;//current points to next node
                 }
+                //assign the last node's pointer to newe node
                 prev->next = newNode;
-                newNode->rating = tempR;
+                newNode->rating = tempR;    //assign values to new node;
                 newNode->comment = tempC;
-                newNode->next = nullptr;
+                newNode->next = nullptr;    //new node points to nullptr;
             }
-        }
-
+        
+        //Gather input
         cout << "Enter another review? Y/N: ";
         cin >> inputC;
+        //Validate input data
         while (inputC != 'n' && inputC != 'N' && inputC != 'Y' && inputC != 'y') {
             cout << "\tError! Please enter Y/N: ";
             cin >> inputC;
         }
-    } while (inputC != 'n' && inputC != 'N');
+    } while(inputC != 'n' && inputC != 'N');
 
     return 0;
+}
 }
