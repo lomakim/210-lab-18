@@ -36,6 +36,10 @@ int main() {
         //Enter input for review
         cout << "Enter review rating 0-5: ";
         cin >> tempR;
+        while (tempR > 5 || tempR < 0) {
+            cout << "\tError! Please enter a # 0-5: ";
+            cin >> tempR;
+        }
         cin.ignore();
         cout << "Enter review comments: ";
         getline(cin, tempC);
@@ -81,28 +85,30 @@ int main() {
 
         //Gather input
         cout << "Enter another review? Y/N: ";
-        cin.ignore();
         cin >> inputC;
+        cin.ignore();
         //Validate input data
         while (inputC != 'n' && inputC != 'N' 
                 && inputC != 'Y' && inputC != 'y') {
             cout << "\tError! Please enter Y/N: ";
             cin >> inputC;
         }
+        cout << endl;
     } while(inputC != 'n' && inputC != 'N');
 
     //Print list information
-    int count = 1;                          //counter to track number of nodes
+    double count = 1;                          //counter to track number of nodes
     double totalR= 0.0;
     current = head;                         //reset current pointer to head
     cout << "Outputting all reviews:" << endl;
     while(current) {
-        cout << "\t> Review #" << count << ":";
-        cout << current->rating << ": " << current->comment << endl;
+        cout << "\t> Review #" << count << ": ";
+        cout << current->rating << ": " << current->comment << endl;          
         totalR += current->rating;          //add rating to total
         count++;                            //increment count #
+        current = current->next;            //go to next node
     }
-    cout << "\t> Average: ";
+    cout << "\t> Average: " << (totalR / --count);
 
     return 0;
 }
