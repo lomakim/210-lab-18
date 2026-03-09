@@ -12,8 +12,7 @@ struct ReviewNode {
 int main() {
     //DECLARATIONS
     ReviewNode* head = nullptr;
-    ReviewNode* current = head;
-    ReviewNode* newNode;
+    ReviewNode* current, prev, newNode;
     int choice;
     double tempR;
     string tempC;
@@ -35,21 +34,34 @@ int main() {
         cout << "Enter review comments: ";
         getline(cin, tempC);
         cin.ignore();
-        cout << "Enter another review? Y/N: ";
         cin >> inputC;
         if (choice == 1){
+            newNode = new ReviewNode;
             if(!head) {
-                newNode = new ReviewNode;
                 head = newNode;
                 newNode->next = nullptr;
                 newNode->rating = tempR;
                 newNode->comment = tempC;
+            }
+            else {
+                newNode->next = head;
+                newNode->rating = tempR;
+                newNode->comment = tempC;
+                head = newNode;
+            }
+        }
+        if (choice == 2) {
+            newNode = new ReviewNode;
+            current = head;
+            while(current) {
+
             }
         }
         while (inputC != 'n' && inputC != 'N' && inputC != 'Y' && inputC != 'y') {
             cout << "\tError! Please enter Y/N: ";
             cin >> inputC;
         }
+        cout << "Enter another review? Y/N: ";
     } while (inputC != 'n' && inputC != 'N');
 
 
